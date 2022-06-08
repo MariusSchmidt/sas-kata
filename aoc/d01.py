@@ -4,8 +4,13 @@ import math
 def process_data_a(filepath: str) -> int:
     file = open(filepath, 'r')
     lines = file.readlines()
+    file.close()
+
+    # init block
     previous_value = math.nan
-    increases = 0
+    increase_count = 0
+
+    # processing
     for line in lines:
         line = line.strip()
         if not line.isnumeric():
@@ -14,10 +19,10 @@ def process_data_a(filepath: str) -> int:
             previous_value = int(line)
             continue
         if int(line) > previous_value:
-            increases = increases + 1
+            increase_count += 1
         previous_value = int(line)
-    file.close()
-    return increases
+
+    return increase_count
 
 
 def process_data_b(filepath: str) -> int:
